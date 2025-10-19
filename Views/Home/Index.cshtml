@@ -1,0 +1,154 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Form Başlat";
+}
+
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Adım Adım Form Takibi</title>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap'>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-card">
+            <div class="decorative-element"></div>
+            <div class="form-content">
+                <div class="form-header">
+                    <h1 class="form-title">Başlayalım</h1>
+                    <p class="form-subtitle">İhtiyaçlarınızı birkaç adımda anlamamıza yardımcı olun</p>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <span class="progress-step active" data-step="1" data-number="1">Hakkınızda</span>
+                        <span class="progress-step" data-step="2" data-number="2">Hedefleriniz</span>
+                        <span class="progress-step" data-step="3" data-number="3">Tercihler</span>
+                        <span class="progress-step" data-step="4" data-number="4">Son Detaylar</span>
+                    </div>
+                </div>
+
+                <div class="error-message" id="errorMessage"></div>
+
+                <form id="multiStepForm" asp-action="Submit" asp-controller="Home" method="post">
+
+                    <!-- Step 1 -->
+                    <div class="form-step active" data-step="1">
+                        <div class="form-group">
+                            <label for="fullName">Ad Soyad <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="fullName" placeholder="John Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="form-step" data-step="2">
+                        <div class="form-group">
+                            <label>Birincil hedefiniz <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="goal1" name="goal" value="growth" required>
+                                    <label for="goal1" class="radio-label">İş Büyümesi</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="goal2" name="goal" value="optimization">
+                                    <label for="goal2" class="radio-label">Süreç Optimizasyonu</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="goal3" name="goal" value="innovation">
+                                    <label for="goal3" class="radio-label">Yenilik & Teknoloji</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="goal4" name="goal" value="other">
+                                    <label for="goal4" class="radio-label">Diğer</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="form-step" data-step="3">
+                        <div class="form-group">
+                            <label for="company">Şirket Adı</label>
+                            <input type="text" id="company" name="company" placeholder="Acme Inc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="industry">Sektör <span class="required">*</span></label>
+                            <select id="industry" name="industry" required>
+                                <option value="">Sektör Seçin</option>
+                                <option value="technology">Teknoloji</option>
+                                <option value="healthcare">Sağlık</option>
+                                <option value="finance">Finans</option>
+                                <option value="retail">Perakende & E-ticaret</option>
+                                <option value="manufacturing">Üretim</option>
+                                <option value="education">Eğitim</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamSize">Takım Büyüklüğü</label>
+                            <select id="teamSize" name="teamSize">
+                                <option value="">Takım Büyüklüğü Seçin</option>
+                                <option value="1-10">1-10 kişi</option>
+                                <option value="11-50">11-50 kişi</option>
+                                <option value="51-200">51-200 kişi</option>
+                                <option value="201-500">201-500 kişi</option>
+                                <option value="500+">500+ kişi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="form-step" data-step="4">
+                        <div class="form-group">
+                            <label for="message">İhtiyaçlarınızı Detaylandırın</label>
+                            <textarea id="message" name="message" placeholder="Bize eklemek istediğiniz detayları paylaşın..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="referral">Bizi nasıl duydunuz?</label>
+                            <select id="referral" name="referral">
+                                <option value="">Seçin</option>
+                                <option value="search">Arama Motoru</option>
+                                <option value="social">Sosyal Medya</option>
+                                <option value="referral">Arkadaş / Tavsiye</option>
+                                <option value="advertisement">Reklam</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Geri</button>
+                        <button type="button" class="btn-primary" id="nextBtn">Devam</button>
+                    </div>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon"></div>
+                    <h3>Teşekkürler!</h3>
+                    <p>Bilgileriniz alındı, kısa süre içinde sizinle iletişime geçeceğiz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/site.js"></script>
+
+</body>
+
+</html>
